@@ -1,0 +1,60 @@
+{
+  "watchlist": [
+    {
+      "symbol": "NVDA",
+      "name": "NVIDIA Corporation",
+      "sector": "Semiconductors",
+      "added_date": "2026-08-01",
+      "target_entry": 115.0,
+      "stop_loss": 105.0,
+      "take_profit": 145.0,
+      "notes": "AI GPU Leader - Supply Chain Bottleneck Candidate"
+    },
+    {
+      "symbol": "AAPL",
+      "name": "Apple Inc.",
+      "sector": "Consumer Electronics",
+      "added_date": "2026-08-01",
+      "target_entry": 210.0,
+      "stop_loss": 195.0,
+      "take_profit": 250.0,
+      "notes": "Core Holding - Apple Intelligence rollout"
+    },
+    {
+      "symbol": "MSFT",
+      "name": "Microsoft Corporation",
+      "sector": "Software / Cloud",
+      "added_date": "2026-08-01",
+      "target_entry": 430.0,
+      "stop_loss": 400.0,
+      "take_profit": 500.0,
+      "notes": "Cloud & AI Enterprise Leader"
+    },
+    {
+      "symbol": "TSLA",
+      "name": "Tesla Inc.",
+      "sector": "Automotive / EV",
+      "added_date": "2026-08-01",
+      "target_entry": 220.0,
+      "stop_loss": 200.0,
+      "take_profit": 280.0,
+      "notes": "FSD V13 & Robotaxi Catalyst"
+    }
+  ],
+  "portfolio": [
+    {
+      "symbol": "NVDA",
+      "shares": 50,
+      "avg_price": 118.5,
+      "current_value": 5925.0,
+      "entry_date": "2026-08-02"
+    },
+    {
+      "symbol": "AAPL",
+      "shares": 30,
+      "avg_price": 215.0,
+      "current_value": 6450.0,
+      "entry_date": "2026-08-03"
+    }
+  ]
+}

@@ -72,7 +72,7 @@ class TouchgrassEngine:
         self.notifier.dispatch(report)
 
         # 5. Save report to reports/ directory (daily_stock_analysis pattern)
-        self._save_report(report)
+        self._save_report(report, run_type=run_type)
 
         return {
             "run_type": run_type,
@@ -81,22 +81,24 @@ class TouchgrassEngine:
             "report_markdown": report
         }
 
-    def _save_report(self, report_markdown: str):
-        """Saves report markdown to reports/latest.md and reports/report_YYYYMMDD.md."""
+    def _save_report(self, report_markdown: str, run_type: str = "scheduled"):
+        """Saves report markdown to reports/latest.md, reports/report_YYYYMMDD.md, and timestamped reports."""
         try:
             reports_dir = TOUCHGRASS_ROOT / "reports"
             reports_dir.mkdir(parents=True, exist_ok=True)
 
-            date_str = datetime.datetime.now().strftime("%Y%m%d")
+            now = datetime.datetime.now()
+            date_str = now.strftime("%Y%m%d")
+            time_str = now.strftime("%H%M%S")
+
             latest_file = reports_dir / "latest.md"
             dated_file = reports_dir / f"report_{date_str}.md"
+            timestamped_file = reports_dir / f"report_{date_str}_{time_str}_{run_type}.md"
 
-            with open(latest_file, "w", encoding="utf-8") as f:
-                f.write(report_markdown)
+            for filepath in [latest_file, dated_file, timestamped_file]:
+                with open(filepath, "w", encoding="utf-8") as f:
+                    f.write(report_markdown)
 
-            with open(dated_file, "w", encoding="utf-8") as f:
-                f.write(report_markdown)
-
-            print(f"💾 Report saved to {latest_file} and {dated_file}")
+            print(f"💾 Report saved to {latest_file}, {dated_file}, and {timestamped_file}")
         except Exception as e:
             print(f"[TouchgrassEngine] Error saving report files: {e}")

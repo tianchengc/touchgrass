@@ -37,6 +37,8 @@ ENV/
 .coverage
 htmlcov/
 
-# Touchgrass logs & temp
+# Touchgrass logs, configs & temp
 *.log
 scratch/
+config/watchlist.json
+!config/watchlist.example.json

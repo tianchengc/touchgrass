@@ -26,7 +26,7 @@ In the stock market, staring at 5-minute candle charts all day is a fast track t
 
 > 🌿 **"Go touch grass, let AI manage your stock portfolio with institutional discipline."**
 
-Touchgrass runs automatically twice a day—once 2 hours after market open to check morning momentum, and once 2 hours before market close to execute position rebalancing. It filters out pump-and-dump scams, scores stocks using a 65-investor panel, and sends clear, stress-free buy/sell/hold directives directly to your phone via Telegram, Email, or Discord.
+Touchgrass runs automatically twice a day—once at 11:30 AM ET (morning check 2 hours after open) and once at 3:30 PM ET (late-afternoon check 30 minutes before market close so you can place trades before the bell). It evaluates market risk, scores stocks using a 7-faction multi-investor panel, and generates clear, stress-free buy/sell/hold directives directly in markdown market reports.
 
 ---
 
@@ -38,9 +38,9 @@ It is **NOT** a high-frequency day-trading bot. Most retail traders lose capital
 
 Instead, Touchgrass:
 * **Identifies Multi-Day Swings**: Focuses on high-conviction structural trends, supply-chain monopolies, and institutional accumulation.
-* **Runs Twice a Day**:
-  - **11:30 AM EST (Morning Check)**: Evaluates early market sentiment & trend confirmation 2 hours after US market open.
-  - **2:00 PM EST (Afternoon Check)**: Rebalances positions & executes disciplined entry/exit alerts 2 hours before US market close.
+* **Runs Twice a Day During Open Market Hours**:
+  - **11:30 AM ET (Morning Check)**: Evaluates early market sentiment & trend confirmation 2 hours after US market open.
+  - **3:30 PM ET (Late-Afternoon Check)**: Analyzes near-close daily K-lines 30 minutes before US market close so you can act on trade signals before the bell.
 * **Enforces Risk Discipline**: Sets 8% trailing stop-loss bounds and 20% swing take-profit targets to eliminate emotional over-trading.
 
 ---
@@ -48,11 +48,11 @@ Instead, Touchgrass:
 ## ✨ Key Features
 
 * 🤖 **AI Agent Native (`/touchgrass`)**: Built to integrate natively into **Google Antigravity**, **Claude Desktop**, **Codex**, and **Cursor**. Ask your agent to run analysis, scan for breakouts, or update your portfolio.
-* ⏰ **Automated Twice-Daily Market Check**: GitHub Actions workflow runs every trading day (11:30 AM EST & 2:00 PM EST) to evaluate portfolio health and discover high-probability stocks.
+* ⏰ **Automated Twice-Daily Market Check**: GitHub Actions workflow runs every trading day (11:30 AM ET & 3:30 PM ET) with manual on-demand execution.
 * 🔍 **Auto Stock Selection & US Scanner**: Discovers supply chain bottleneck monopolies (like NVDA, TSM, AVGO, ASML) and high-conviction swing trade setups.
-* 🛡️ **Pig-Butchering Scam & Trap Security**: Features **Uzi Trap Detector** to automatically audit stocks against pump-and-dump signals, social media "teacher" traps, and illiquid manipulation.
-* 👨‍💼 **65-Investor Persona Panel**: Cross-evaluates every stock through 7 legendary investment factions (Buffett/Munger value, Cathie Wood tech growth, Dalio macro, Minervini momentum, Simons quant).
-* 📱 **Multi-Channel Notification Digest**: Generates clean, stress-free markdown alerts sent via Telegram, Email, Discord, ServerChan, or Webhooks.
+* 🛡️ **Programmatic Liquidity & Penny Stock Risk Audit**: Audits stocks against micro-cap illiquidity (<$50M cap), zero volume, penny stock status (<$1.00), and extreme volatility spikes. *(Social media promoter scam web scraping tracked via [#5](https://github.com/tianchengc/touchgrass/issues/5))*
+* 👨‍💼 **7-Faction Multi-Investor Persona Panel**: Evaluates every stock across 7 investment factions: Buffett value, Wood growth, Dalio macro, Minervini momentum, Simons quant, Hillhouse China value, and A-Share Youzi trend. *(Full 65-individual LLM persona simulation tracked via [#4](https://github.com/tianchengc/touchgrass/issues/4))*
+* 📱 **Terminal & Multi-Channel Market Digest**: Generates clean, stress-free markdown alerts for console output and local files. *(Remote Discord & Email alert webhook integration tracked via [#2](https://github.com/tianchengc/touchgrass/issues/2))*
 
 ---
 
@@ -118,7 +118,54 @@ pip install -e .
 
 # Run full market evaluation & portfolio update
 python main.py run
+```
 
+---
+
+## 📋 Managing Your Watchlist & Portfolio Holdings
+
+Touchgrass tracks two lists inside `config/watchlist.json`:
+1. **Watchlist (`"watchlist"`)**: Candidate stocks you are monitoring (with target entry, stop loss, and take profit bounds).
+2. **Portfolio Holdings (`"portfolio"`)**: Active stocks you currently own (with share count and average purchase price).
+
+> 🔒 **Privacy Note**: `config/watchlist.json` is automatically ignored in `.gitignore` so your personal holdings and private stock list are never committed to public git history. When running for the first time, Touchgrass automatically copies the fallback template from [config/watchlist.example.json](file:///Users/tiancheng/Documents/Hackathon/stock-invest-tracker/touchgrass/config/watchlist.example.json) to set up your environment out of the box.
+
+### Method A: Via Command Line (CLI)
+
+```bash
+# 1. View current watchlist and active portfolio holdings
+python main.py watchlist
+
+# 2. Add or update an active stock holding in your portfolio
+python main.py hold NVDA --shares 50 --price 118.50
+
+# 3. Add a stock symbol to your watchlist to monitor
+python main.py add AAPL --target 210.00 --notes "Apple Intelligence rollout"
+
+# 4. Remove a stock from your watchlist
+python main.py remove AAPL
+```
+
+### Method B: Via AI Agent Prompt
+You can simply tell your AI Agent (in **Google Antigravity**, **Claude Desktop**, **Codex**, or **Cursor**):
+* *"Hey, add 50 shares of NVDA at $118.50 to my Touchgrass portfolio holdings."*
+* *"Add TSLA to my watchlist with a $220 target price."*
+* *"Show my current Touchgrass portfolio."*
+
+### Method C: Direct JSON File Editing
+You can directly edit [config/watchlist.json](file:///Users/tiancheng/Documents/Hackathon/stock-invest-tracker/touchgrass/config/watchlist.json):
+```json
+{
+  "watchlist": [
+    { "symbol": "NVDA", "target_entry": 115.0, "notes": "AI GPU Leader" }
+  ],
+  "portfolio": [
+    { "symbol": "NVDA", "shares": 50, "avg_price": 118.5, "entry_date": "2026-08-07" }
+  ]
+}
+```
+
+```bash
 # Discover swing trading candidates (Supply chain monopolies & KOL scorecards)
 python main.py scan --max 5
 

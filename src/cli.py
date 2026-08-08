@@ -58,6 +58,12 @@ def main():
     rm_parser = subparsers.add_parser("remove", help="Remove a stock symbol from watchlist")
     rm_parser.add_argument("symbol", type=str, help="Stock symbol")
 
+    # Command: hold
+    hold_parser = subparsers.add_parser("hold", help="Add or update an active portfolio holding")
+    hold_parser.add_argument("symbol", type=str, help="Stock symbol")
+    hold_parser.add_argument("--shares", type=float, required=True, help="Number of shares owned")
+    hold_parser.add_argument("--price", type=float, required=True, help="Average purchase price")
+
     args = parser.parse_args()
 
     if not args.command or args.command == "run":
@@ -108,6 +114,12 @@ def main():
             print(f"✅ Removed {args.symbol.upper()} from swing watchlist.")
         else:
             print(f"⚠️ Symbol {args.symbol.upper()} not found in watchlist.")
+
+    elif args.command == "hold":
+        pm = PortfolioManager()
+        success = pm.update_holding(args.symbol, shares=args.shares, avg_price=args.price)
+        if success:
+            print(f"✅ Updated portfolio holding: {args.symbol.upper()} ({args.shares} shares @ ${args.price}).")
 
 
 if __name__ == "__main__":

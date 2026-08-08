@@ -2,10 +2,10 @@ name: 🌿 Touchgrass Market Runner
 
 on:
   schedule:
-    # Morning Run: 2 hours after US market open (11:30 AM EST / 15:30 UTC)
+    # Morning Check: 11:30 AM ET / 15:30 UTC (2 hours after market open)
     - cron: '30 15 * * 1-5'
-    # Afternoon Run: 2 hours before US market close (2:00 PM EST / 19:00 UTC)
-    - cron: '0 19 * * 1-5'
+    # Late Afternoon Check: 3:30 PM ET / 19:30 UTC (30 minutes before market close)
+    - cron: '30 19 * * 1-5'
   workflow_dispatch:
     inputs:
       run_type:
@@ -34,7 +34,7 @@ jobs:
           pip install -r requirements.txt
           pip install -e .
 
-      - name: 🌿 Run Touchgrass Morning Market Check
+      - name: 🌿 Run Touchgrass Morning Check (11:30 AM ET)
         if: github.event.schedule == '30 15 * * 1-5' || github.event.inputs.run_type == 'morning'
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
@@ -46,8 +46,8 @@ jobs:
         run: |
           python main.py run --type morning
 
-      - name: 🌿 Run Touchgrass Afternoon Market Check
-        if: github.event.schedule == '0 19 * * 1-5' || github.event.inputs.run_type == 'afternoon'
+      - name: 🌿 Run Touchgrass Late Afternoon Check (3:30 PM ET)
+        if: github.event.schedule == '30 19 * * 1-5' || github.event.inputs.run_type == 'afternoon'
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
@@ -59,7 +59,7 @@ jobs:
           python main.py run --type afternoon
 
       - name: 🌿 Run Touchgrass Manual Market Run
-        if: github.event.inputs.run_type == 'manual' || (github.event.schedule != '30 15 * * 1-5' && github.event.schedule != '0 19 * * 1-5' && github.event_name != 'schedule')
+        if: github.event.inputs.run_type == 'manual' || (github.event.schedule != '30 15 * * 1-5' && github.event.schedule != '30 19 * * 1-5' && github.event_name != 'schedule')
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}

@@ -56,7 +56,7 @@ class StockAnalyzer:
         investor_panel = self.uzi_bridge.run_investor_panel(symbol, market_data)
 
         # 4. Trap Detector
-        trap_check = self.uzi_bridge.detect_traps(symbol)
+        trap_check = self.uzi_bridge.detect_traps(symbol, market_data=market_data)
 
         # 5. Serenity KOL Scorecard
         kol_scorecard = self.serenity_bridge.evaluate_kol_sentiment(symbol)

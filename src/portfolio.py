@@ -19,6 +19,19 @@ class PortfolioManager:
 
     def _load(self) -> Dict[str, Any]:
         if not self.filepath.exists():
+            # Check for example fallback template
+            example_file = self.filepath.parent / "watchlist.example.json"
+            if example_file.exists():
+                try:
+                    with open(example_file, "r", encoding="utf-8") as f:
+                        data = json.load(f)
+                    # Initialize user watchlist.json from template
+                    self.data = data
+                    self.save()
+                    return data
+                except Exception as e:
+                    print(f"[PortfolioManager] Error loading example fallback {example_file}: {e}")
+
             return {"watchlist": [], "portfolio": []}
         try:
             with open(self.filepath, "r", encoding="utf-8") as f:
