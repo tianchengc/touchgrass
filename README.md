@@ -4,18 +4,31 @@
 
 # 🌿 Touchgrass Trader (`touchgrass`)
 
-**Disciplined Swing Trading decision engine for humans who'd rather touch grass than stare at candle charts all day.**
+**Chill stock management for humans who'd rather touch grass than stare at candle charts all day.**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Strategy: Swing Trading](https://img.shields.io/badge/Strategy-Swing%20Trading%20(5--20%20Days)-emerald.svg)](#-swing-trading-philosophy)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
 [![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-Market%20Runner-2088FF?logo=github-actions&logoColor=white)](.github/workflows/touchgrass_market_run.yml)
 [![AI Agent Compatible](https://img.shields.io/badge/AI%20Agent-Antigravity%20%7C%20Claude%20%7C%20Codex-purple.svg)](AGENTS.md)
-[![Subprojects Integrated](https://img.shields.io/badge/Subprojects-Kronos%20%7C%20Serenity%20%7C%20Uzi%20%7C%20DailyStock-orange.svg)](#-open-source-credits--integrated-subprojects)
 
 ---
 
 </div>
+
+## 📖 What Does "Touch Grass" Mean? (The Story & Philosophy)
+
+In internet culture, **"Touch Grass"** is a friendly reminder to turn off your glowing screens, step outside, feel the fresh air, and reconnect with real life.
+
+In the stock market, staring at 5-minute candle charts all day is a fast track to stress, FOMO, panic selling, and losing money. Most non-professional investors don't fail because they lack intelligence—they fail because they spend **too much time** obsessing over intraday noise and falling for social media hype groups.
+
+**Touchgrass Trader** was created to change that forever:
+
+> 🌿 **"Go touch grass, let AI manage your stock portfolio with institutional discipline."**
+
+Touchgrass runs automatically twice a day—once 2 hours after market open to check morning momentum, and once 2 hours before market close to execute position rebalancing. It filters out pump-and-dump scams, scores stocks using a 65-investor panel, and sends clear, stress-free buy/sell/hold directives directly to your phone via Telegram, Email, or Discord.
+
+---
 
 ## 📈 Swing Trading Philosophy: Not Intra-Day Noise
 
@@ -32,30 +45,14 @@ Instead, Touchgrass:
 
 ---
 
-## 🔮 How Kronos AI Time-Series Prediction Model Works in Touchgrass
+## ✨ Key Features
 
-[**Kronos**](https://github.com/shishi-ai/Kronos) is a foundation deep-learning model trained on financial time-series (OHLCV K-line sequences). Just as LLMs predict the next word in a sentence, Kronos predicts future K-line price trajectories.
-
-### How Kronos is integrated:
-1. **Historical Sequence Tokenization**: Touchgrass feeds recent daily price sequences (Open, High, Low, Close, Volume) of watchlist stocks into Kronos.
-2. **5-Day Momentum Inference**: Kronos outputs projected 5-to-10 day directional momentum probabilities (`BULLISH`, `NEUTRAL`, `BEARISH`) with confidence metrics.
-3. **Multi-Factor Decision Signal**: Touchgrass combines Kronos's time-series prediction with Uzi's 65-Investor Panel and Serenity's Supply Chain Scorecard:
-   $$\text{Touchgrass Score} = 0.40 \times \text{Investor Panel} + 0.30 \times \text{Kronos Trend} + 0.30 \times \text{KOL Sentiment}$$
-
----
-
-## 🙏 Open-Source Credits & Integrated Subprojects
-
-Touchgrass stands on the shoulders of giants. We directly integrate, acknowledge, and actively maintain updated versions of these outstanding open-source projects in `touchgrass/subprojects/`:
-
-| Subproject | Original Author / Repository | Role in Touchgrass Trader |
-|------------|------------------------------|----------------------------|
-| **`daily_stock_analysis`** | [ZhuLinsen/daily_stock_analysis](https://github.com/ZhuLinsen/daily_stock_analysis) | Multi-LLM provider engine, market data fetchers, report persistence to `reports/`, and multi-channel notifications. |
-| **`Kronos`** | [shishi-ai/Kronos](https://github.com/shishi-ai/Kronos) | Deep learning K-line time-series foundation model for 5-day directional swing predictions. |
-| **`serenity-skill`** | [tianchengc/serenity-skill](https://github.com/tianchengc/serenity-skill) | Supply chain chokepoint discovery (NVDA, TSM, AVGO, ASML) and KOL conviction scorecards. |
-| **`uzi-skill`** | [tianchengc/uzi-skill](https://github.com/tianchengc/uzi-skill) | 65-Investor Persona Panel voting (Buffett, Wood, Dalio, Minervini, Simons) & Pig-Butchering Scam Trap Detector. |
-
-> 📌 **Maintenance Note**: We directly maintain synced, optimized versions of these subprojects inside `touchgrass/subprojects/` to ensure daily report storage (`reports/*.md`), custom bug fixes, and zero-config GitHub Actions deployment.
+* 🤖 **AI Agent Native (`/touchgrass`)**: Built to integrate natively into **Google Antigravity**, **Claude Desktop**, **Codex**, and **Cursor**. Ask your agent to run analysis, scan for breakouts, or update your portfolio.
+* ⏰ **Automated Twice-Daily Market Check**: GitHub Actions workflow runs every trading day (11:30 AM EST & 2:00 PM EST) to evaluate portfolio health and discover high-probability stocks.
+* 🔍 **Auto Stock Selection & US Scanner**: Discovers supply chain bottleneck monopolies (like NVDA, TSM, AVGO, ASML) and high-conviction swing trade setups.
+* 🛡️ **Pig-Butchering Scam & Trap Security**: Features **Uzi Trap Detector** to automatically audit stocks against pump-and-dump signals, social media "teacher" traps, and illiquid manipulation.
+* 👨‍💼 **65-Investor Persona Panel**: Cross-evaluates every stock through 7 legendary investment factions (Buffett/Munger value, Cathie Wood tech growth, Dalio macro, Minervini momentum, Simons quant).
+* 📱 **Multi-Channel Notification Digest**: Generates clean, stress-free markdown alerts sent via Telegram, Email, Discord, ServerChan, or Webhooks.
 
 ---
 
@@ -66,10 +63,10 @@ Touchgrass stands on the shoulders of giants. We directly integrate, acknowledge
 > **5 minutes setup, 100% free, zero maintenance, no server required.**
 
 #### 1. Fork this Repository
-Click the **Fork** button at the top right of this page to create your personal copy.
+Click the **Fork** button at the top right of this page to create your personal copy (or create a **Private Fork** to keep your portfolio holdings private).
 
 #### 2. Configure Repository Secrets
-Go to your forked repository: `Settings` ➔ `Secrets and variables` ➔ `Actions` ➔ `New repository secret`.
+Go to your repository: `Settings` ➔ `Secrets and variables` ➔ `Actions` ➔ `New repository secret`.
 
 **AI Model API Keys (Configure at least one)**
 
@@ -88,7 +85,18 @@ Go to your forked repository: `Settings` ➔ `Secrets and variables` ➔ `Action
 | `SERVERCHAN_SENDKEY` | ServerChan Push Notifications |
 | `SENDER_EMAIL` + `SENDER_PASSWORD` + `RECEIVER_EMAIL` | Email Notifications |
 
-#### 3. Validate & Run GitHub Actions
+#### 3. Enable GitHub Actions Workflow Permissions (Required for Auto-Commit 🔑)
+To allow Touchgrass to automatically save daily reports (`reports/*.md`) and update watchlist states back to your repository:
+
+1. Go to repository **`Settings`** ➔ **`Actions`** ➔ **`General`**.
+2. Scroll down to **`Workflow permissions`**.
+3. Select **`Read and write permissions`**.
+4. Check **`Allow GitHub Actions to create and approve pull requests`**.
+5. Click **`Save`**.
+
+> ⚠️ **Note**: If Workflow Permissions are left on *"Read repository contents permission"*, the daily report auto-commit step will fail with a `403 Forbidden` permission error.
+
+#### 4. Validate & Run GitHub Actions
 1. Go to the **Actions** tab in your repository.
 2. Enable workflows by clicking **"I understand my workflows, go ahead and enable them"**.
 3. Select **🌿 Touchgrass Market Runner** from the left sidebar.
@@ -174,6 +182,21 @@ flowchart TD
 
 ✨ *Go touch grass! Touchgrass AI is keeping your portfolio safe.* ✨
 ```
+
+---
+
+## 🙏 Open-Source Credits & Integrated Subprojects
+
+Touchgrass stands on the shoulders of giants. We directly integrate, acknowledge, and actively maintain updated versions of these outstanding open-source projects in `touchgrass/subprojects/`:
+
+| Subproject | Original Author / Repository | Role in Touchgrass Trader |
+|------------|------------------------------|----------------------------|
+| **`daily_stock_analysis`** | [ZhuLinsen/daily_stock_analysis](https://github.com/ZhuLinsen/daily_stock_analysis) | Multi-LLM provider engine, market data fetchers, report persistence to `reports/`, and multi-channel notifications. |
+| **`Kronos`** | [shishi-ai/Kronos](https://github.com/shishi-ai/Kronos) | Deep learning K-line time-series foundation model for 5-day directional swing predictions. |
+| **`serenity-skill`** | [tianchengc/serenity-skill](https://github.com/tianchengc/serenity-skill) | Supply chain chokepoint discovery (NVDA, TSM, AVGO, ASML) and KOL conviction scorecards. |
+| **`uzi-skill`** | [tianchengc/uzi-skill](https://github.com/tianchengc/uzi-skill) | 65-Investor Persona Panel voting (Buffett, Wood, Dalio, Minervini, Simons) & Pig-Butchering Scam Trap Detector. |
+
+> 📌 **Maintenance Note**: We directly maintain synced, optimized versions of these subprojects inside `touchgrass/subprojects/` to ensure daily report storage (`reports/*.md`), custom bug fixes, and zero-config GitHub Actions deployment.
 
 ---
 
