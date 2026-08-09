@@ -37,15 +37,15 @@ ENV/
 .coverage
 htmlcov/
 
-# Touchgrass logs, configs & temp
+# Touchgrass logs, configs & private watchlist
 *.log
 scratch/
 config/watchlist.json
 !config/watchlist.example.json
 
-# Touchgrass generated reports (ignore timestamped reports, keep latest.md)
-reports/report_*.md
-!reports/latest.md
+# Touchgrass generated reports (all generated reports ignored, keep directory structure)
+reports/*
+!reports/.gitkeep
 
 # Subproject git repositories (cloned directly from GitHub)
 subprojects/*
