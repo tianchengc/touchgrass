@@ -1,0 +1,33 @@
+{
+  "name": "touchgrass",
+  "version": "1.0.0",
+  "description": "Chill stock management AI Agent plugin & skill for humans who'd rather touch grass than stare at candle charts all day. Swing trading, Kronos ML, Uzi 65 investor panel & Serenity supply-chain discovery.",
+  "author": "tianchengc",
+  "license": "MIT",
+  "homepage": "https://github.com/tianchengc/touchgrass",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tianchengc/touchgrass.git"
+  },
+  "keywords": [
+    "touchgrass",
+    "swing-trading",
+    "stock-investing",
+    "kronos-ml",
+    "uzi-investor-panel",
+    "serenity-supply-chain",
+    "ai-agent-plugin"
+  ],
+  "skills": [
+    {
+      "name": "touchgrass",
+      "path": "skills/touchgrass/SKILL.md",
+      "description": "Automated swing trading stock management, market regime gates, Kronos 5-day ML trend prediction, 65 investor panel scoring, trap security, and portfolio updates."
+    }
+  ],
+  "hooks": {
+    "on_market_run": "python main.py run",
+    "on_scan": "python main.py scan --max 5",
+    "on_analyze": "python main.py analyze"
+  }
+}

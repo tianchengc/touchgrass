@@ -7,11 +7,11 @@ if str(TOUCHGRASS_ROOT) not in sys.path:
     sys.path.insert(0, str(TOUCHGRASS_ROOT))
 
 try:
-    from touchgrass.subprojects.uzi.bridge import UziBridge
-    from touchgrass.src.analyzer import StockAnalyzer
-except ImportError:
-    from subprojects.uzi.bridge import UziBridge
+    from scripts.bridges import UziBridge
     from src.analyzer import StockAnalyzer
+except ImportError:
+    from touchgrass.scripts.bridges import UziBridge
+    from touchgrass.src.analyzer import StockAnalyzer
 
 
 class TestPR1Fixes(unittest.TestCase):

@@ -178,16 +178,41 @@ python main.py watchlist
 
 ---
 
-## 🤖 Using with AI Agents (Antigravity, Claude, Codex, Cursor)
+## 🤖 AI Agent Plugin & Marketplace Installation (Ponytail-Style)
 
-Touchgrass provides a dedicated **AI Agent Skill** ([`skills/touchgrass/SKILL.md`](skills/touchgrass/SKILL.md) & [`AGENTS.md`](AGENTS.md)).
+Touchgrass Trader can be installed as an AI Agent plugin or skill across **Google Antigravity**, **Claude Code**, **Codex**, and **Cursor**!
 
-Simply tell your AI agent:
+### 1. Claude Code
+Install Touchgrass directly from marketplace inside a Claude Code session:
+```bash
+/plugin marketplace add tianchengc/touchgrass
+/plugin install touchgrass@touchgrass
+```
+
+### 2. Codex
+Add Touchgrass marketplace in Codex terminal or session:
+```bash
+codex plugin marketplace add tianchengc/touchgrass
+```
+Then open `/plugins` inside Codex to enable Touchgrass!
+
+### 3. Google Antigravity / Gemini CLI
+Install Touchgrass extension via command line:
+```bash
+gemini extensions install https://github.com/tianchengc/touchgrass
+```
+Or copy/link `.agents/skills/touchgrass` directly into your workspace.
+
+---
+
+## 🤖 Using with AI Agents
+
+Once installed, simply instruct your AI Agent:
 > *"Touch grass and check my swing stock portfolio."*  
 > *"Discover top supply-chain monopoly stocks and add them to my swing watchlist."*  
 > *"Run touchgrass analysis on NVDA and tell me Kronos trend prediction."*
 
-Your agent will invoke `touchgrass` CLI commands under the hood and summarize the decisions for you.
+Your agent will invoke `touchgrass` CLI commands under the hood and present the 3-question executive summary.
 
 ---
 
@@ -234,16 +259,14 @@ flowchart TD
 
 ## 🙏 Open-Source Credits & Integrated Subprojects
 
-Touchgrass stands on the shoulders of giants. We directly integrate, acknowledge, and actively maintain updated versions of these outstanding open-source projects in `touchgrass/subprojects/`:
+Touchgrass stands on the shoulders of giants. Subprojects are cloned directly as live Git repositories into `subprojects/` so you can sync upstream changes anytime with `git pull`:
 
-| Subproject | Original Author / Repository | Role in Touchgrass Trader |
-|------------|------------------------------|----------------------------|
-| **`daily_stock_analysis`** | [ZhuLinsen/daily_stock_analysis](https://github.com/ZhuLinsen/daily_stock_analysis) | Multi-LLM provider engine, market data fetchers, report persistence to `reports/`, and multi-channel notifications. |
-| **`Kronos`** | [shishi-ai/Kronos](https://github.com/shishi-ai/Kronos) | Deep learning K-line time-series foundation model for 5-day directional swing predictions. |
-| **`serenity-skill`** | [muxuuu/serenity-skill](https://github.com/muxuuu/serenity-skill) | Supply chain chokepoint discovery (NVDA, TSM, AVGO, ASML) and KOL conviction scorecards. |
-| **`uzi-skill`** | [tianchengc/uzi-skill](https://github.com/tianchengc/uzi-skill) | 65-Investor Persona Panel voting (Buffett, Wood, Dalio, Minervini, Simons) & Pig-Butchering Scam Trap Detector. |
-
-> 📌 **Maintenance Note**: We directly maintain synced, optimized versions of these subprojects inside `touchgrass/subprojects/` to ensure daily report storage (`reports/*.md`), custom bug fixes, and zero-config GitHub Actions deployment.
+| Subproject | Repository URL | Role in Touchgrass Trader | Upstream Update Command |
+|------------|----------------|----------------------------|-------------------------|
+| **`Kronos`** | [shiyu-coder/Kronos](https://github.com/shiyu-coder/Kronos) | Deep learning K-line time-series foundation model for 5-day directional swing predictions. | `cd subprojects/kronos && git pull` |
+| **`daily_stock_analysis`** | [ZhuLinsen/daily_stock_analysis](https://github.com/ZhuLinsen/daily_stock_analysis) | Multi-LLM provider engine, market data fetchers, report persistence to `reports/`, and multi-channel notifications. | `cd subprojects/daily_stock_analysis && git pull` |
+| **`UZI-Skill`** | [wbh604/UZI-Skill](https://github.com/wbh604/UZI-Skill) | 65-Investor Persona Panel voting (Buffett, Wood, Dalio, Minervini, Simons) & Pig-Butchering Scam Trap Detector. | `cd subprojects/uzi-skill && git pull` |
+| **`serenity-skill`** | [muxuuu/serenity-skill](https://github.com/muxuuu/serenity-skill) | Supply chain chokepoint discovery (NVDA, TSM, AVGO, ASML) and KOL conviction scorecards. | `cd subprojects/serenity-skill && git pull` |
 
 ---
 

@@ -37,15 +37,23 @@ class TouchgrassEngine:
         self.analyzer = StockAnalyzer()
         self.notifier = Notifier()
 
-    def run_market_round(self, run_type: str = "scheduled", auto_add_scanned: bool = True) -> Dict[str, Any]:
+    def run_market_round(self, run_type: str = "scheduled", auto_add_scanned: bool = True, report_url: str = "") -> Dict[str, Any]:
         """
         Executes one full round of market analysis:
-        1. Analyzes existing watchlist stocks
-        2. Runs market-wide stock scanner (Breakout + Supply Chain)
-        3. Auto-adds top discovered candidate to watchlist
-        4. Generates decision report, dispatches notification, and saves report to reports/
+        1. Ingests optional external report URL (if user hosts their own daily_stock_analysis run)
+        2. Analyzes existing watchlist stocks
+        3. Runs market-wide stock scanner (Breakout + Supply Chain)
+        4. Auto-adds top discovered candidate to watchlist
+        5. Generates decision report, dispatches notification, and saves report to reports/
         """
         print(f"🌿 Starting Touchgrass Market Round: {run_type.upper()}...")
+        if report_url:
+            print(f"🌐 Ingesting external daily_stock_analysis report from: {report_url}")
+            from scripts.bridges import DailyStockAnalysisBridge
+            dsa = DailyStockAnalysisBridge(report_url=report_url)
+            ext_content = dsa.fetch_external_report(report_url)
+            if ext_content:
+                print(f"✅ Successfully fetched external report ({len(ext_content)} chars)")
 
         # 1. Analyze existing watchlist
         watchlist = self.portfolio_mgr.get_watchlist()

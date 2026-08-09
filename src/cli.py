@@ -36,6 +36,7 @@ def main():
     run_parser = subparsers.add_parser("run", help="Run a full swing trading market evaluation round")
     run_parser.add_argument("--type", choices=["morning", "afternoon", "scheduled"], default="scheduled", help="Market run type")
     run_parser.add_argument("--no-auto-add", action="store_true", help="Disable auto-adding discovered stocks to watchlist")
+    run_parser.add_argument("--report-url", type=str, default="", help="Optional URL to external daily_stock_analysis report")
 
     # Command: scan
     scan_parser = subparsers.add_parser("scan", help="Run swing trade stock discovery (Supply-chain monopolies & KOL conviction)")
@@ -70,7 +71,8 @@ def main():
         engine = TouchgrassEngine()
         run_type = getattr(args, "type", "scheduled")
         auto_add = not getattr(args, "no_auto_add", False)
-        engine.run_market_round(run_type=run_type, auto_add_scanned=auto_add)
+        report_url = getattr(args, "report_url", "")
+        engine.run_market_round(run_type=run_type, auto_add_scanned=auto_add, report_url=report_url)
 
     elif args.command == "scan":
         scanner = AutoStockScanner()
