@@ -1,12 +1,15 @@
 """
 Touchgrass Subprojects Package.
 Bridges Kronos, Serenity, Uzi, and DailyStockAnalysis.
+Bridge implementations are hosted under `scripts/bridges/`.
 """
 
-from .kronos.bridge import KronosBridge
-from .serenity.bridge import SerenityBridge
-from .uzi.bridge import UziBridge
-from .daily_stock_analysis.bridge import DailyStockAnalysisBridge
+from scripts.bridges import (
+    KronosBridge,
+    SerenityBridge,
+    UziBridge,
+    DailyStockAnalysisBridge
+)
 
 __all__ = [
     "KronosBridge",

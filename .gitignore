@@ -42,3 +42,11 @@ htmlcov/
 scratch/
 config/watchlist.json
 !config/watchlist.example.json
+
+# Touchgrass generated reports (ignore timestamped reports, keep latest.md)
+reports/report_*.md
+!reports/latest.md
+
+# Subproject git repositories (cloned directly from GitHub)
+subprojects/*
+!subprojects/__init__.py

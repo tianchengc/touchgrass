@@ -15,9 +15,9 @@ for p in [str(PARENT_ROOT), str(TOUCHGRASS_ROOT)]:
         sys.path.insert(0, p)
 
 try:
-    from touchgrass.subprojects.serenity.bridge import SerenityBridge
+    from scripts.bridges import SerenityBridge
 except ImportError:
-    from subprojects.serenity.bridge import SerenityBridge
+    from touchgrass.scripts.bridges import SerenityBridge
 
 
 class AutoStockScanner:

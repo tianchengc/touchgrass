@@ -19,15 +19,9 @@ for p in [str(PARENT_ROOT), str(TOUCHGRASS_ROOT)]:
         sys.path.insert(0, p)
 
 try:
-    from touchgrass.subprojects.daily_stock_analysis.bridge import DailyStockAnalysisBridge
-    from touchgrass.subprojects.kronos.bridge import KronosBridge
-    from touchgrass.subprojects.uzi.bridge import UziBridge
-    from touchgrass.subprojects.serenity.bridge import SerenityBridge
+    from scripts.bridges import DailyStockAnalysisBridge, KronosBridge, UziBridge, SerenityBridge
 except ImportError:
-    from subprojects.daily_stock_analysis.bridge import DailyStockAnalysisBridge
-    from subprojects.kronos.bridge import KronosBridge
-    from subprojects.uzi.bridge import UziBridge
-    from subprojects.serenity.bridge import SerenityBridge
+    from touchgrass.scripts.bridges import DailyStockAnalysisBridge, KronosBridge, UziBridge, SerenityBridge
 
 
 class StockAnalyzer:
